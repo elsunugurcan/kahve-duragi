@@ -3,25 +3,27 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cream: #f7f1e8;
+  --cream-2: #efe5d6;
+  --espresso: #2a1a12;
+  --mocha: #6b4a35;
+  --accent: #c2410c;
+  --accent-2: #9a3412;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--espresso); }
+.font-serif { font-family: var(--font-lora), Georgia, serif; }
+@layer components {
+.container-x { @apply mx-auto max-w-7xl px-4 sm:px-6; }
+.btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50; }
+.btn-primary { @apply btn bg-[var(--espresso)] text-[var(--cream)] hover:bg-[var(--accent)]; }
+.btn-accent { @apply btn bg-[var(--accent)] text-white hover:bg-[var(--accent-2)]; }
+.btn-outline { @apply btn border border-espresso/20 bg-transparent text-[var(--espresso)] hover:border-[var(--espresso)] hover:bg-white/40; }
+.chip { @apply inline-flex items-center gap-1 rounded-full border border-espresso/15 bg-white/50 px-3 py-1 text-xs font-medium; }
+.card { @apply rounded-3xl border border-espresso/10 bg-white/60 shadow-[0_1px_0_rgba(42,26,18,.04),0_20px_40px_-30px_rgba(42,26,18,.35)]; }
+.input { @apply w-full rounded-xl border border-espresso/15 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-espresso/40 focus:border-[var(--accent)] focus:ring-2 focus:ring-accent/15; }
+.label { @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-[var(--mocha)]; }
+.eyebrow { @apply text-xs font-semibold uppercase tracking-[0.25em] text-[var(--accent)]; }
 }
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
+@keyframes rise { from { opacity: 0; transform: translateY(14px);} to { opacity: 1; transform: none; } }
+.rise { animation: rise .6s cubic-bezier(.2,.7,.2,1) both; }
